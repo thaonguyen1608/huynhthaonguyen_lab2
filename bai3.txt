@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sắp xếp dãy số nguyên</title>
+    <!-- Thêm script để kết nối với Anvil App Server -->
+    <script src="https://anvil.works/uplink.js" async></script>
+</head>
+<body>
+    <h2>Nhập dãy số nguyên (cách nhau bằng khoảng trắng):</h2>
+    <input type="text" id="numbers">
+    <h2>Chọn thuật toán sắp xếp:</h2>
+    <select id="algorithm">
+        <option value="Insertion Sort">Insertion Sort</option>
+        <option value="Selection Sort">Selection Sort</option>
+        <option value="Bubble Sort">Bubble Sort</option>
+        <option value="Merge Sort">Merge Sort</option>
+    </select>
+    <br><br>
+    <button onclick="sortNumbers()">Sắp xếp</button>
+    <h2>Kết quả:</h2>
+    <p id="result"></p>
+
+    <script>
+        // Kết nối với Anvil App Server
+        var uplink = anvil.server.connect("YOUR_ANVIL_APP_KEY");
+
+        // Hàm gọi server Python để sắp xếp dãy số
+        function sortNumbers() {
+            var numbers = document.getElementById("numbers").value;
+            var algorithm = document.getElementById("algorithm").value;
+
+            uplink.call('sort_numbers', numbers, algorithm)
+                .then(function(result) {
+                    document.getElementById("result").innerText = result;
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
+        }
+    </script>
+</body>
+</html>
