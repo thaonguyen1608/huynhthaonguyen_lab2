@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+
+// Hàm kiểm tra xem một số có phải là số chính phương hay không
+int isPerfectSquare(int num) {
+    int squareRoot = sqrt(num);
+    return (squareRoot * squareRoot == num);
+}
+
+// Hàm đếm và in ra các số chính phương nhỏ hơn n
+void countAndPrintPerfectSquares(int n) {
+    printf("Cac so chinh phuong nho hon %d la:\n", n);
+    int count = 0;
+
+    // Lặp qua từ 1 đến n để kiểm tra từng số
+    for (int i = 1; i < n; i++) {
+        // Kiểm tra xem số đó có phải là số chính phương không
+        if (isPerfectSquare(i)) {
+            // Nếu là số chính phương, in ra số đó và tăng biến đếm lên 1
+            printf("%d ", i);
+            count++;
+        }
+    }
+
+    printf("\nTong so chinh phuong la: %d\n", count);
+}
+
+int main() {
+    int n=50;
+
+    // Nhập số nguyên dương n từ bàn phím
+    //printf("Nhap so nguyen duong n: ");
+    //scanf("%d", &n);
+
+    // Gọi hàm để đếm và in ra các số chính phương nhỏ hơn n
+    countAndPrintPerfectSquares(n);
+
+    return 0;
+}
